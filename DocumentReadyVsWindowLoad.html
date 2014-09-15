@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Document.Ready vs Window.Load</title>
+    <script src="Scripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log("document loaded");
+        });
+
+        $(window).load(function () {
+            console.log("window loaded");
+        });
+    </script>
+</head>
+<body>
+    <iframe src="http://techcrunch.com"></iframe>
+</body>
+</html>

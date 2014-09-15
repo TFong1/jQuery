@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ways to Handle Events in jQuery</title>
+    <script src="Scripts/jquery-2.0.0.js"></script>
+    <script type="text/javascript">
+        function sayHello(event) {
+            alert("Just saying hello.");
+        }
+
+        $(function () {
+            // The many ways to bind events with jQuery
+            // Event binding using addEventListener
+            /*
+            var helloBtn = document.getElementById("helloBtn");
+
+            helloBtn.addEventListener("click", function (event) {
+                alert("hello");
+            }, false);
+            */
+
+            // Event binding using a convenience method
+            // Attach an event handler directly to the button using jQuery's
+            // shorthand 'click' method.
+            /*
+            $("#helloBtn").click(function (event) {
+                alert("Hello.");
+            });
+            */
+
+            // Attach an event handler directly to the button using jQuery's
+            // 'bind' method, passing it an event string of 'click'
+            /*
+            $("#helloBtn").bind("click", function (event) {
+                alert("hello again");
+            });
+            */
+
+            // As of jQuery 1.7, attach an event handler directly to the button
+            // using jQuery's 'on' method.
+            /*
+            $("#helloBtn").on("click", function (event) {
+                alert("Hello again.");
+            });
+            */
+
+            // As of jQuery 1.7, attach an event handler to the 'body' element that
+            // is listening for clicks, and will respond whenever *any* button is
+            // clicked on the page.
+            /*
+            $("body").on({
+                click: function (event) {
+                    alert("Hello once again.");
+                }
+            }, "button");
+            */
+
+            // An alternative to the previous example, using slightly different syntax.
+            /*
+            $("body").on("click", "button", function (event) {
+                alert("Hello for the last time.");
+            });
+            */
+
+            // Binding a named function
+            $("#helloBtn").on("click", sayHello);
+
+            // Preventing a default action fro occuring and stopping the event bubbling.
+            $("form").on("submit", function (event) {
+                // Prevent the form's default submission.
+                event.preventDefault();
+
+                // Prevent event from bubbling up DOM tree, prohibiting delegation
+                event.stopPropagation();
+
+                // Make an AJAX request to submit the form data.
+                alert("haha");
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="helloBtn">Click Me</button>
+
+    <form>
+        <button type="submit">Nothing Happening</button>
+    </form>
+</body>
+</html>

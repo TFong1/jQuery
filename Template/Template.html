@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Demo</title>
+</head>
+<body>
+    <a href="http://jquery.com/">jQuery</a>
+    <script src="../Scripts/jquery-2.0.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("a").click(function (event) {
+                alert("Thanks for visiting!");
+                //event.preventDefault();  // Cancels the link to jquery.com
+            });
+        });
+    </script>
+</body>
+</html>

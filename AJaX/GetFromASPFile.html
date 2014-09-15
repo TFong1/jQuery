@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Get data from ASP File (w3schools)</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <button>Send an HTTP GET request to a page and get the result back</button>
+
+    <script>
+        $(function () {
+            $("button").click(function () {
+                $.get("demo_test.asp", function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

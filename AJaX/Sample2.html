@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Another Sample from w3schools</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+    <button>Get External Content</button>
+
+    <script>
+        $(function () {
+            $("button").click(function () {
+                $("#div1").load("demo_test2.txt #p1");
+            });
+        });
+    </script>
+</body>
+</html>

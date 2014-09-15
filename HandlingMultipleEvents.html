@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Handling Multiple Event Handlers with jQuery</title>
+    <script src="Scripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        var foo = function () {
+            console.log("foo");
+        }
+        var bar = function () {
+            console.log("bar");
+        }
+
+    </script>
+</head>
+<body>
+    <div id="div1">Div 1</div>
+    <div id="div2">Div 2</div>
+    <p>Paragraph</p>
+    Click on the list below:
+    <ul>
+        <li>one</li>
+        <li>two</li>
+    </ul>
+
+    <script>
+        $(function () {
+            $("#div1").on({
+                mouseenter: function () {
+                    console.log("hovered over a div");
+                },
+                mouseleave: function () {
+                    console.log("mouse left a div");
+                },
+                click: function (event) {
+                    console.log("clicked on a div");
+                    console.log("Event object:");
+                    console.dir(event);
+                }
+            });
+
+            $("#div2").on("mouseenter mouseleave", function () {
+                console.log("mouse hovered over or left a div");
+            });
+
+            $("p").on("mouseover", {
+                foo: "bar"
+            }, function (event) {
+                console.log("event data: " + event.data.foo + " (should be 'bar')");
+            });
+
+            // First console.log is run the first time the <p> is clicked.
+            // 2nd console.log is run each time after 1st time.
+            $("p").one("click", function () {
+                console.log("You just clicked this for the first time!");
+                $(this).click(function () {
+                    console.log("You have clicked this before!");
+                });
+            });
+
+            $("ul").on("click", "li", function () {
+                console.log("Something in a <ul> was clicked, and we detected that it was an <li> element.");
+            });
+
+            // Unbind all click handlers on a selection
+            $("p").off("click");
+
+            // Unbinding a particular click handler, using a reference to the function
+            // Bind foo() and bar() to the click event.
+            $("p").on("click", foo).on("click", bar);
+
+            // foo will stay bound to the click event
+            $("p").off("click", bar);
+        });
+    </script>
+</body>
+</html>

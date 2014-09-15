@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Attributes</title>
+    <script src="Scripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("a").attr("href", "allMyHrefsAreTheSameNow.html");
+
+            $("a").attr({
+                title: "Blue's News",
+                href: "http://www.bluesnews.com"
+            });
+
+            alert($("a").attr("title"));
+        });
+    </script>
+</head>
+<body>
+    <a href="http://www.msn.com">Microsoft Network</a>
+</body>
+</html>

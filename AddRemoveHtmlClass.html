@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Add/Remove HTML Class</title>
+    <style type="text/css">
+        a.test {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="http://jquery.com/">jQuery</a>
+    <script src="../Scripts/jquery-2.0.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("a").addClass("test");
+            $("a").removeClass("test");
+
+            $("a").click(function (event) {
+                event.preventDefault();
+                $(this).hide("slow");
+            });
+        });
+    </script>
+</body>
+</html>

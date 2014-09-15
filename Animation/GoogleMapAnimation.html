@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Google Maps Animation</title>
+    <script src="../Scripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v3.exp&sensor=false"></script>
+    <script type="text/javascript">
+        $(function () {
+            // Let's do something with Google Maps:
+            var $map = $("#map_canvas");
+            var myLatLng = new google.maps.LatLng(-34.397, 150.644);
+            var myOptions = {
+                zoom: 8,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var geocoder = new google.maps.Geocoder();
+            var map = new google.maps.Map($map[0], myOptions);
+            var resized = function () {
+                // simple animation callback - let maps know we resized
+                google.maps.event.trigger(map, "resize");
+            };
+
+            $map.delay(2000);       // Wait for two seconds.
+
+            $map.animate({
+                width: 250,
+                height: 250,
+                marginLeft: 250,
+                marginTop: 250
+            }, resized);
+
+            // Geocode something
+            $map.queue(function (next) {
+                // find stackoverflow's whois address:
+                geocoder.geocode({
+                    address: "55 Broadway New York NY 10006"
+                }, handleResponse);
+
+                function handleResponse(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var location = results[0].geometry.location;
+                        map.setZoom(13);
+                        map.setCenter(location);
+                        new google.maps.Marker({
+                            map: map,
+                            position: location
+                        });
+                    }
+
+                    // geocoder result returned, continue with animations:
+                    next();
+                }
+            });
+
+            // after we find stack overflow, wait 3 more seconds
+            $map.delay(3000);
+
+            // and resize the map again
+            $map.animate({
+                width: 500,
+                height: 500,
+                marginLeft: 0,
+                marginTop: 0
+            }, resized);
+        });
+    </script>
+</head>
+<body>
+    <div id="map_canvas"></div>
+</body>
+</html>
